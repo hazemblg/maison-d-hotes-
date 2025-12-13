@@ -1,8 +1,8 @@
-package com.example.maisonhotes.ui.viewmodel
+package com.example.maisonhotesapp.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.maisonhotes.data.repository.MaisonRepository
+import com.example.maisonhotesapp.data.repository.MaisonRepository
 
 class FiltreViewModelFactory(private val repository: MaisonRepository) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")

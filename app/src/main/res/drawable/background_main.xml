@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Gradient de base bleu -->
+    <item>
+        <shape>
+            <gradient
+                android:type="linear"
+                android:angle="135"
+                android:startColor="#E3F2FD"
+                android:centerColor="#90CAF9"
+                android:endColor="#64B5F6" />
+        </shape>
+    </item>
+
+    <!-- Overlay semi-transparent pour effet depth -->
+    <item>
+        <shape>
+            <gradient
+                android:type="radial"
+                android:centerX="0.5"
+                android:centerY="0.3"
+                android:gradientRadius="800dp"
+                android:startColor="#40FFFFFF"
+                android:endColor="#00FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- Pattern de points décoratifs -->
+    <item android:top="80dp" android:left="50dp">
+        <shape android:shape="oval">
+            <size android:width="15dp" android:height="15dp" />
+            <solid android:color="#40FFFFFF" />
+        </shape>
+    </item>
+
+    <item android:top="150dp" android:right="80dp">
+        <shape android:shape="oval">
+            <size android:width="20dp" android:height="20dp" />
+            <solid android:color="#30FFFFFF" />
+        </shape>
+    </item>
+
+    <item android:top="250dp" android:left="100dp">
+        <shape android:shape="oval">
+            <size android:width="12dp" android:height="12dp" />
+            <solid android:color="#50FFFFFF" />
+        </shape>
+    </item>
+
+    <item android:top="350dp" android:right="50dp">
+        <shape android:shape="oval">
+            <size android:width="18dp" android:height="18dp" />
+            <solid android:color="#35FFFFFF" />
+        </shape>
+    </item>
+
+    <item android:bottom="200dp" android:left="70dp">
+        <shape android:shape="oval">
+            <size android:width="16dp" android:height="16dp" />
+            <solid android:color="#45FFFFFF" />
+        </shape>
+    </item>
+
+    <item android:bottom="120dp" android:right="100dp">
+        <shape android:shape="oval">
+            <size android:width="14dp" android:height="14dp" />
+            <solid android:color="#38FFFFFF" />
+        </shape>
+    </item>
+</layer-list>
+

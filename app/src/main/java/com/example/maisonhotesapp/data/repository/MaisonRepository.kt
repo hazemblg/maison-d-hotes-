@@ -1,7 +1,7 @@
-package com.example.maisonhotes.data.repository
+package com.example.maisonhotesapp.data.repository
 
-import com.example.maisonhotes.data.dao.*
-import com.example.maisonhotes.data.entity.*
+import com.example.maisonhotesapp.data.dao.*
+import com.example.maisonhotesapp.data.entity.*
 import kotlinx.coroutines.flow.Flow
 
 class MaisonRepository(
@@ -81,15 +81,17 @@ class MaisonRepository(
 
     fun getAvisByMaison(maisonHoteId: Int): Flow<List<Avis>> = avisDao.getAvisByMaison(maisonHoteId)
 
-    suspend fun getMoyenneNotation(maisonHoteId: Int): Float? = avisDao.getMoyenneNotation(maisonHoteId)
-
-    suspend fun getNombreAvis(maisonHoteId: Int): Int = avisDao.getNombreAvis(maisonHoteId)
+    suspend fun getAvisById(id: Int): Avis? = avisDao.getAvisById(id)
 
     suspend fun insertAvis(avis: Avis) = avisDao.insert(avis)
 
     suspend fun updateAvis(avis: Avis) = avisDao.update(avis)
 
     suspend fun deleteAvis(avis: Avis) = avisDao.delete(avis)
+
+    suspend fun getMoyenneNotation(maisonHoteId: Int): Float? = avisDao.getMoyenneNotation(maisonHoteId)
+
+    suspend fun getNombreAvis(maisonHoteId: Int): Int = avisDao.getNombreAvis(maisonHoteId)
 
 
     // ============================================
@@ -98,9 +100,11 @@ class MaisonRepository(
 
     fun getImagesByMaison(maisonHoteId: Int): Flow<List<Image>> = imageDao.getImagesByMaison(maisonHoteId)
 
+    suspend fun getImageById(id: Int): Image? = imageDao.getImageById(id)
+
     suspend fun insertImage(image: Image) = imageDao.insert(image)
 
-    suspend fun deleteImage(image: Image) = imageDao.delete(image)
+    suspend fun updateImage(image: Image) = imageDao.update(image)
 
-    suspend fun deleteImagesByMaison(maisonHoteId: Int) = imageDao.deleteImagesByMaison(maisonHoteId)
+    suspend fun deleteImage(image: Image) = imageDao.delete(image)
 }

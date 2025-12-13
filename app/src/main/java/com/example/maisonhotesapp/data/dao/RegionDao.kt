@@ -1,13 +1,18 @@
-package com.example.maisonhotes.data.dao
+package com.example.maisonhotesapp.data.dao
 
 import androidx.room.*
-import com.example.maisonhotes.data.entity.Region
+import com.example.maisonhotesapp.data.entity.Region
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RegionDao {
+    @Query("SELECT * FROM regions ORDER BY nom ASC")
+    fun getAllRegions(): Flow<List<Region>>
 
-    @Insert
+    @Query("SELECT * FROM regions WHERE id = :id")
+    suspend fun getRegionById(id: Int): Region?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(region: Region)
 
     @Update
@@ -15,10 +20,4 @@ interface RegionDao {
 
     @Delete
     suspend fun delete(region: Region)
-
-    @Query("SELECT * FROM regions")
-    fun getAllRegions(): Flow<List<Region>>
-
-    @Query("SELECT * FROM regions WHERE id = :id")
-    suspend fun getRegionById(id: Int): Region?
 }

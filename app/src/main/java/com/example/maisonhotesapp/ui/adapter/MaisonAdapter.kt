@@ -1,4 +1,4 @@
-package com.example.maisonhotes.ui.adapter
+package com.example.maisonhotesapp.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.maisonhotes.R
-import com.example.maisonhotes.data.entity.MaisonHote
-import com.example.maisonhotes.databinding.ItemMaisonBinding
+import com.example.maisonhotesapp.R
+import com.example.maisonhotesapp.data.entity.MaisonHote
+import com.example.maisonhotesapp.databinding.ItemMaisonBinding
 
 class MaisonAdapter(
     private val onItemClick: (MaisonHote) -> Unit,
@@ -24,36 +24,50 @@ class MaisonAdapter(
         holder.bind(getItem(position))
     }
 
-    inner class MaisonViewHolder(
+    class MaisonViewHolder(
         private val binding: ItemMaisonBinding,
         private val onItemClick: (MaisonHote) -> Unit,
         private val onFavoriteClick: (MaisonHote) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(maison: MaisonHote) {
-            binding.apply {
-                nomMaison.text = maison.nom
-                prixNuit.text = "${maison.prixParNuit}€ / nuit"
-                notation.text = String.format("%.1f", maison.notation)
-                nombreAvis.text = "${maison.nombreAvis} avis"
+            binding.nomMaison.text = maison.nom
+            binding.prixNuit.text = "${maison.prix}€ / nuit"
+            binding.notation.text = String.format("%.1f", maison.notation)
+            binding.nombreAvis.text = "(${maison.nombreAvis} avis)"
 
-                // Charger l'image avec Glide
-                Glide.with(binding.root.context)
-                    .load(maison.imageUrl)
-                    .centerCrop()
-                    .placeholder(R.drawable.ic_placeholder)
-                    .into(imageMaison)
-
-                // Icône favori
-                favoriteBtn.setIconResource(
-                    if (maison.estFavorite) R.drawable.ic_favorite_filled
-                    else R.drawable.ic_favorite_empty
+            // Charger l'image avec Glide
+            val imageResId = if (maison.imageUrl.isNotEmpty() && !maison.imageUrl.startsWith("http")) {
+                // Si c'est un nom de ressource locale (ex: "maison_tunis_1")
+                val resId = itemView.context.resources.getIdentifier(
+                    maison.imageUrl,
+                    "drawable",
+                    itemView.context.packageName
                 )
-
-                // Clics
-                root.setOnClickListener { onItemClick(maison) }
-                favoriteBtn.setOnClickListener { onFavoriteClick(maison) }
+                if (resId != 0) resId else R.drawable.ic_placeholder
+            } else if (maison.imageUrl.startsWith("http")) {
+                // Si c'est une URL complète
+                maison.imageUrl
+            } else {
+                R.drawable.ic_placeholder
             }
+
+            Glide.with(itemView.context)
+                .load(imageResId)
+                .centerCrop()
+                .placeholder(R.drawable.ic_placeholder)
+                .error(R.drawable.ic_placeholder)
+                .into(binding.imageMaison)
+
+            // Icône favori
+            binding.favoriteBtn.setIconResource(
+                if (maison.isFavorite) R.drawable.ic_favorite_filled
+                else R.drawable.ic_favorite_empty
+            )
+
+            // Clics
+            itemView.setOnClickListener { onItemClick(maison) }
+            binding.favoriteBtn.setOnClickListener { onFavoriteClick(maison) }
         }
     }
 

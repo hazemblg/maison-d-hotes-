@@ -1,13 +1,18 @@
-package com.example.maisonhotes.data.dao
+package com.example.maisonhotesapp.data.dao
 
 import androidx.room.*
-import com.example.maisonhotes.data.entity.Avis
+import com.example.maisonhotesapp.data.entity.Avis
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface AvisDao {
+    @Query("SELECT * FROM avis WHERE maisonHoteId = :maisonHoteId ORDER BY dateAvis DESC")
+    fun getAvisByMaison(maisonHoteId: Int): Flow<List<Avis>>
 
-    @Insert
+    @Query("SELECT * FROM avis WHERE id = :id")
+    suspend fun getAvisById(id: Int): Avis?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(avis: Avis)
 
     @Update
@@ -16,10 +21,7 @@ interface AvisDao {
     @Delete
     suspend fun delete(avis: Avis)
 
-    @Query("SELECT * FROM avis WHERE maisonHoteId = :maisonHoteId ORDER BY dateAvis DESC")
-    fun getAvisByMaison(maisonHoteId: Int): Flow<List<Avis>>
-
-    @Query("SELECT AVG(notation) FROM avis WHERE maisonHoteId = :maisonHoteId")
+    @Query("SELECT AVG(note) FROM avis WHERE maisonHoteId = :maisonHoteId")
     suspend fun getMoyenneNotation(maisonHoteId: Int): Float?
 
     @Query("SELECT COUNT(*) FROM avis WHERE maisonHoteId = :maisonHoteId")

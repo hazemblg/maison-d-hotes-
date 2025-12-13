@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="80dp"
+    android:height="80dp"
+    android:viewportWidth="80"
+    android:viewportHeight="80">
+
+    <!-- Motif étoiles/détails -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M40,20 L42,26 L48,26 L43,30 L45,36 L40,32 L35,36 L37,30 L32,26 L38,26 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M20,50 L22,54 L26,54 L23,57 L24,61 L20,58 L16,61 L17,57 L14,54 L18,54 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M60,50 L62,54 L66,54 L63,57 L64,61 L60,58 L56,61 L57,57 L54,54 L58,54 Z" />
+</vector>
+

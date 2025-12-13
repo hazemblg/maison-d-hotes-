@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@drawable/background_form">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,25 +12,48 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ajouter une Maison d'Hôtes"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_dark"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Informations de base -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Informations de base"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:layout_marginBottom="12dp" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:boxBackgroundColor="@color/white">
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/primary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/nomInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/nom"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textColor="@color/text_dark"
+                android:textColorHint="@color/text_light" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:boxBackgroundColor="@color/white">
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/primary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/descriptionInput"
@@ -38,64 +61,308 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/description"
                 android:inputType="textMultiLine"
-                android:lines="4" />
+                android:lines="4"
+                android:textColor="@color/text_dark"
+                android:textColorHint="@color/text_light" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Région et Ville -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/primary">
+
+            <AutoCompleteTextView
+                android:id="@+id/regionSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/region"
+                android:inputType="none"
+                android:textColor="@color/text_dark"
+                android:textColorHint="@color/text_light"
+                android:textSize="16sp"
+                android:padding="16dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:boxBackgroundColor="@color/white">
+            android:layout_marginBottom="12dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/primary">
+
+            <AutoCompleteTextView
+                android:id="@+id/villeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/ville"
+                android:inputType="none"
+                android:textColor="@color/text_dark"
+                android:textColorHint="@color/text_light"
+                android:textSize="16sp"
+                android:padding="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Prix et capacité -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prix et Capacité"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/primary"
+            app:suffixText="€/nuit">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/prixInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/prix"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:textColor="@color/text_dark"
+                android:textColorHint="@color/text_light" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false"
+            android:layout_marginBottom="12dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                app:boxBackgroundColor="@color/white"
+                app:hintTextColor="@color/primary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/chambresInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/chambres"
+                    android:inputType="number"
+                    android:textColor="@color/text_dark"
+                    android:textColorHint="@color/text_light" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:boxBackgroundColor="@color/white"
+                app:hintTextColor="@color/primary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/litsInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/lits"
+                    android:inputType="number"
+                    android:textColor="@color/text_dark"
+                    android:textColorHint="@color/text_light" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Contact -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Informations de Contact"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:boxBackgroundColor="@color/white">
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/primary"
+            app:startIconDrawable="@drawable/ic_phone">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/telephoneInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/telephone"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:textColor="@color/text_dark"
+                android:textColorHint="@color/text_light" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:boxBackgroundColor="@color/white">
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/primary"
+            app:startIconDrawable="@drawable/ic_email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textColor="@color/text_dark"
+                android:textColorHint="@color/text_light" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/primary"
+            app:startIconDrawable="@drawable/ic_web">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/siteWebInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Site Web"
+                android:inputType="textUri"
+                android:textColor="@color/text_dark"
+                android:textColorHint="@color/text_light" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Réseaux sociaux -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Réseaux Sociaux"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/primary"
+            app:startIconDrawable="@drawable/ic_facebook">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/facebookInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Facebook"
+                android:inputType="textUri"
+                android:textColor="@color/text_dark"
+                android:textColorHint="@color/text_light" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/primary"
+            app:startIconDrawable="@drawable/ic_instagram">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/instagramInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Instagram"
+                android:inputType="textUri"
+                android:textColor="@color/text_dark"
+                android:textColorHint="@color/text_light" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- URL Image -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Image"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/imageUrlInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="URL de l'image"
+                android:inputType="textUri"
+                android:textColor="@color/text_dark"
+                android:textColorHint="@color/text_light" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Équipements -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/amenities"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/amenitiesInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ex: WiFi,Climatisation,Piscine"
+                android:inputType="text"
+                android:textColor="@color/text_dark"
+                android:textColorHint="@color/text_light" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Boutons -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/saveBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/sauvegarder" />
+            android:text="@string/sauvegarder"
+            android:textSize="16sp"
+            android:padding="16dp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/deleteBtn"
+            android:id="@+id/cancelBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/supprimer"
+            android:text="Annuler"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
     </LinearLayout>

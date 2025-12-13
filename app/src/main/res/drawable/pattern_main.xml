@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Motif de maisons -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M20,40 L30,30 L40,40 L40,50 L20,50 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M60,40 L70,30 L80,40 L80,50 L60,50 Z" />
+
+    <!-- Portes et fenêtres -->
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M27,45 L33,45 L33,50 L27,50 Z" />
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M67,45 L73,45 L73,50 L67,50 Z" />
+</vector>
+

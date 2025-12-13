@@ -1,12 +1,12 @@
-package com.example.maisonhotes.ui.viewmodel
+package com.example.maisonhotesapp.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.maisonhotes.data.entity.Avis
-import com.example.maisonhotes.data.entity.MaisonHote
-import com.example.maisonhotes.data.repository.MaisonRepository
+import com.example.maisonhotesapp.data.entity.Avis
+import com.example.maisonhotesapp.data.entity.MaisonHote
+import com.example.maisonhotesapp.data.repository.MaisonRepository
 import kotlinx.coroutines.launch
 
 class MaisonDetailViewModel(
@@ -14,7 +14,8 @@ class MaisonDetailViewModel(
     private val maisonId: Int
 ) : ViewModel() {
 
-    private lateinit var maisonHote: MaisonHote
+    private val _maisonHote = androidx.lifecycle.MutableLiveData<MaisonHote?>()
+    val maisonHote: androidx.lifecycle.LiveData<MaisonHote?> = _maisonHote
 
     // Récupérer les avis
     val avis = repository.getAvisByMaison(maisonId).asLiveData()
@@ -24,11 +25,12 @@ class MaisonDetailViewModel(
 
     init {
         viewModelScope.launch {
-            maisonHote = repository.getMaisonHoteById(maisonId) ?: return@launch
+            val maison = repository.getMaisonHoteById(maisonId)
+            _maisonHote.postValue(maison)
         }
     }
 
-    fun getMaisonHote() = maisonHote
+    fun getMaisonHote(): MaisonHote? = _maisonHote.value
 
     // Ajouter un avis
     fun ajouterAvis(avis: Avis) {
@@ -39,20 +41,25 @@ class MaisonDetailViewModel(
             val moyenneNotation = repository.getMoyenneNotation(maisonId) ?: 0f
             val nombreAvis = repository.getNombreAvis(maisonId)
 
-            val maisonUpdated = maisonHote.copy(
-                notation = moyenneNotation,
-                nombreAvis = nombreAvis
-            )
-            repository.updateMaisonHote(maisonUpdated)
-            maisonHote = maisonUpdated
+            _maisonHote.value?.let { currentMaison ->
+                val maisonUpdated = currentMaison.copy(
+                    notation = moyenneNotation,
+                    nombreAvis = nombreAvis
+                )
+                repository.updateMaisonHote(maisonUpdated)
+                _maisonHote.postValue(maisonUpdated)
+            }
         }
     }
 
     // Ajouter/Retirer des favoris
     fun toggleFavorite() {
         viewModelScope.launch {
-            repository.updateFavorite(maisonHote.id, !maisonHote.estFavorite)
-            maisonHote = maisonHote.copy(estFavorite = !maisonHote.estFavorite)
+            _maisonHote.value?.let { currentMaison ->
+                repository.updateFavorite(currentMaison.id, !currentMaison.isFavorite)
+                val maisonUpdated = currentMaison.copy(isFavorite = !currentMaison.isFavorite)
+                _maisonHote.postValue(maisonUpdated)
+            }
         }
     }
 

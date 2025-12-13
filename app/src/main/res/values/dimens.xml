@@ -1,3 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Padding/Margin -->
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+
+    <!-- Font sizes -->
+    <dimen name="text_title">24sp</dimen>
+    <dimen name="text_subtitle">18sp</dimen>
+    <dimen name="text_body">16sp</dimen>
+    <dimen name="text_small">14sp</dimen>
+    <dimen name="text_tiny">12sp</dimen>
+
+    <!-- Image sizes -->
+    <dimen name="image_height">200dp</dimen>
+    <dimen name="image_item_height">150dp</dimen>
+
+    <!-- Corner radius -->
+    <dimen name="corner_radius_small">4dp</dimen>
+    <dimen name="corner_radius_medium">8dp</dimen>
+    <dimen name="corner_radius_large">12dp</dimen>
 </resources>

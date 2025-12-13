@@ -1,4 +1,4 @@
-package com.example.maisonhotes.ui.fragment
+package com.example.maisonhotesapp.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.maisonhotes.data.database.MaisonsHotesDatabase
-import com.example.maisonhotes.data.repository.MaisonRepository
-import com.example.maisonhotes.databinding.FragmentMaisonListBinding
-import com.example.maisonhotes.ui.adapter.MaisonAdapter
-import com.example.maisonhotes.ui.viewmodel.MaisonListViewModel
-import com.example.maisonhotes.ui.viewmodel.MaisonListViewModelFactory
+import com.example.maisonhotesapp.data.database.MaisonsHotesDatabase
+import com.example.maisonhotesapp.data.repository.MaisonRepository
+import com.example.maisonhotesapp.databinding.FragmentMaisonListBinding
+import com.example.maisonhotesapp.ui.adapter.MaisonAdapter
+import com.example.maisonhotesapp.ui.viewmodel.MaisonListViewModel
+import com.example.maisonhotesapp.ui.viewmodel.MaisonListViewModelFactory
 
 class FavoriFragment : Fragment() {
 
@@ -50,15 +50,17 @@ class FavoriFragment : Fragment() {
     private fun setupRecyclerView() {
         adapter = MaisonAdapter(
             onItemClick = { maison ->
-                val action = FavoriFragmentDirections.actionFavoriFragmentToMaisonDetailFragment(maison.id)
-                findNavController().navigate(action)
+                val bundle = Bundle().apply {
+                    putInt("maisonId", maison.id)
+                }
+                findNavController().navigate(com.example.maisonhotesapp.R.id.action_favoriFragment_to_maisonDetailFragment, bundle)
             },
             onFavoriteClick = { maison ->
                 viewModel.toggleFavorite(maison)
             }
         )
-        binding.maisonsRecyclerView.adapter = adapter
-        binding.maisonsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerViewMaisons.adapter = adapter
+        binding.recyclerViewMaisons.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun setupObservers() {
@@ -67,3 +69,4 @@ class FavoriFragment : Fragment() {
         }
     }
 }
+

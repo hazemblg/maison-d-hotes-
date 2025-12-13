@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Gradient violet élégant -->
+    <item>
+        <shape>
+            <gradient
+                android:type="linear"
+                android:angle="120"
+                android:startColor="#F3E5F5"
+                android:centerColor="#E1BEE7"
+                android:endColor="#CE93D8" />
+        </shape>
+    </item>
+
+    <!-- Overlay lumineux -->
+    <item>
+        <shape>
+            <gradient
+                android:type="radial"
+                android:centerX="0.7"
+                android:centerY="0.2"
+                android:gradientRadius="600dp"
+                android:startColor="#50FFFFFF"
+                android:endColor="#00FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- Petites étoiles/points décoratifs -->
+    <item android:top="100dp" android:right="60dp">
+        <rotate
+            android:fromDegrees="45"
+            android:pivotX="50%"
+            android:pivotY="50%">
+            <shape android:shape="rectangle">
+                <size android:width="25dp" android:height="25dp" />
+                <solid android:color="#40FFFFFF" />
+            </shape>
+        </rotate>
+    </item>
+
+    <item android:top="220dp" android:left="40dp">
+        <rotate
+            android:fromDegrees="45"
+            android:pivotX="50%"
+            android:pivotY="50%">
+            <shape android:shape="rectangle">
+                <size android:width="30dp" android:height="30dp" />
+                <solid android:color="#35FFFFFF" />
+            </shape>
+        </rotate>
+    </item>
+
+    <item android:top="380dp" android:right="90dp">
+        <rotate
+            android:fromDegrees="45"
+            android:pivotX="50%"
+            android:pivotY="50%">
+            <shape android:shape="rectangle">
+                <size android:width="20dp" android:height="20dp" />
+                <solid android:color="#45FFFFFF" />
+            </shape>
+        </rotate>
+    </item>
+
+    <item android:bottom="150dp" android:left="70dp">
+        <rotate
+            android:fromDegrees="45"
+            android:pivotX="50%"
+            android:pivotY="50%">
+            <shape android:shape="rectangle">
+                <size android:width="28dp" android:height="28dp" />
+                <solid android:color="#38FFFFFF" />
+            </shape>
+        </rotate>
+    </item>
+</layer-list>
+

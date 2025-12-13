@@ -1,14 +1,12 @@
-package com.example.maisonhotes.ui.adapter
+package com.example.maisonhotesapp.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.maisonhotes.data.entity.Avis
-import com.example.maisonhotes.databinding.ItemAvisBinding
-import java.text.SimpleDateFormat
-import java.util.*
+import com.example.maisonhotesapp.data.entity.Avis
+import com.example.maisonhotesapp.databinding.ItemAvisBinding
 
 class AvisAdapter : ListAdapter<Avis, AvisAdapter.AvisViewHolder>(AvisDiffCallback()) {
 
@@ -21,21 +19,20 @@ class AvisAdapter : ListAdapter<Avis, AvisAdapter.AvisViewHolder>(AvisDiffCallba
         holder.bind(getItem(position))
     }
 
-    inner class AvisViewHolder(private val binding: ItemAvisBinding) :
+    class AvisViewHolder(private val binding: ItemAvisBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(avis: Avis) {
             binding.apply {
                 auteur.text = avis.auteur
                 contenu.text = avis.contenu
-                notation.text = String.format("%.1f", avis.notation)
+                notation.text = String.format("%.1f", avis.note)
 
-                // Formater la date
-                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale("fr", "FR"))
-                dateAvis.text = dateFormat.format(Date(avis.dateAvis))
+                // Date (déjà formatée en String)
+                dateAvis.text = avis.dateAvis
 
                 // Rating bar
-                ratingBar.rating = avis.notation
+                ratingBar.rating = avis.note
             }
         }
     }

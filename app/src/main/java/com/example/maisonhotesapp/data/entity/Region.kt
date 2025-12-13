@@ -1,4 +1,4 @@
-package com.example.maisonhotes.data.entity
+package com.example.maisonhotesapp.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

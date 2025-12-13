@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
+    android:layout_margin="@dimen/padding_small"
+    app:cardCornerRadius="@dimen/corner_radius_medium"
     app:cardElevation="2dp"
     app:cardBackgroundColor="@color/white">
 
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/padding_medium">
 
         <!-- Auteur et date -->
         <LinearLayout
@@ -28,14 +28,14 @@
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:textColor="@color/text_dark"
-                android:textSize="14sp" />
+                android:textSize="@dimen/text_body" />
 
             <TextView
                 android:id="@+id/dateAvis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_light"
-                android:textSize="12sp" />
+                android:textSize="@dimen/text_small" />
         </LinearLayout>
 
         <!-- Rating bar -->
@@ -43,7 +43,7 @@
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/padding_small"
             android:numStars="5"
             android:isIndicator="true"
             style="?attr/ratingBarStyleSmall" />
@@ -53,7 +53,7 @@
             android:id="@+id/contenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/padding_small"
             android:textColor="@color/text_light"
             android:lineSpacingMultiplier="1.2" />
 
@@ -62,7 +62,7 @@
             android:id="@+id/notation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/padding_small"
             android:textColor="@color/primary"
             android:textStyle="bold" />
     </LinearLayout>

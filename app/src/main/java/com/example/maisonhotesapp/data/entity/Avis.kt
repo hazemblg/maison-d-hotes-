@@ -1,9 +1,8 @@
-package com.example.maisonhotes.data.entity
+package com.example.maisonhotesapp.data.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import com.example.maisonhotes.data.entity.MaisonHote
 
 @Entity(
     tableName = "avis",
@@ -21,7 +20,7 @@ data class Avis(
     val id: Int = 0,
     val maisonHoteId: Int,
     val auteur: String,
+    val note: Float, // 1-5
     val contenu: String,
-    val notation: Float,
-    val dateAvis: Long = System.currentTimeMillis()
+    val dateAvis: String = ""
 )

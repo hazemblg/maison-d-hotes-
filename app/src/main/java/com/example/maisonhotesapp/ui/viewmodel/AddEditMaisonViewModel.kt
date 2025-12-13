@@ -1,10 +1,10 @@
-package com.example.maisonhotes.ui.viewmodel
+package com.example.maisonhotesapp.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.maisonhotes.data.entity.Image
-import com.example.maisonhotes.data.entity.MaisonHote
-import com.example.maisonhotes.data.repository.MaisonRepository
+import com.example.maisonhotesapp.data.entity.Image
+import com.example.maisonhotesapp.data.entity.MaisonHote
+import com.example.maisonhotesapp.data.repository.MaisonRepository
 import kotlinx.coroutines.launch
 
 class AddEditMaisonViewModel(private val repository: MaisonRepository) : ViewModel() {

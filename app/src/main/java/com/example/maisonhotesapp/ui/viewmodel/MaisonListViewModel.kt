@@ -1,10 +1,10 @@
-package com.example.maisonhotes.ui.viewmodel
+package com.example.maisonhotesapp.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.maisonhotes.data.entity.MaisonHote
-import com.example.maisonhotes.data.repository.MaisonRepository
+import com.example.maisonhotesapp.data.entity.MaisonHote
+import com.example.maisonhotesapp.data.repository.MaisonRepository
 import kotlinx.coroutines.launch
 
 class MaisonListViewModel(private val repository: MaisonRepository) : ViewModel() {
@@ -29,7 +29,7 @@ class MaisonListViewModel(private val repository: MaisonRepository) : ViewModel(
     // Ajouter/Retirer des favoris
     fun toggleFavorite(maisonHote: MaisonHote) {
         viewModelScope.launch {
-            repository.updateFavorite(maisonHote.id, !maisonHote.estFavorite)
+            repository.updateFavorite(maisonHote.id, !maisonHote.isFavorite)
         }
     }
 

@@ -1,0 +1,106 @@
+// Guide de Personnalisation des Animations du Splash Screen
+// Fichier: SplashActivity.kt
+
+/*
+ * DURÉES DES ANIMATIONS (en millisecondes)
+ * ========================================
+ *
+ * Icône zoom + rotation : 800ms
+ * Titre slide           : 600ms
+ * Sous-titre slide      : 600ms
+ * Description fade      : 500ms
+ * Texte bouton slide    : 500ms
+ * Bouton FAB bounce     : 600ms
+ * Rotation continue     : 3000ms (par cycle)
+ * Pulsation continue    : 1000ms (par cycle)
+ */
+
+/*
+ * DÉLAIS DE DÉMARRAGE (en millisecondes)
+ * ======================================
+ *
+ * Icône          : 0ms    (démarre immédiatement)
+ * Titre          : 400ms
+ * Sous-titre     : 700ms
+ * Description    : 1000ms
+ * Texte bouton   : 1300ms
+ * Bouton FAB     : 1500ms
+ * Rotation icône : 1000ms
+ * Pulsation FAB  : 2200ms
+ */
+
+/*
+ * INTERPOLATEURS UTILISÉS
+ * =======================
+ *
+ * BounceInterpolator             : Effet de rebond (icône, bouton FAB)
+ * OvershootInterpolator          : Dépassement puis retour (titre, sous-titre)
+ * AccelerateDecelerateInterpolator : Accélération/décélération douce (description, texte bouton, rotations)
+ */
+
+/*
+ * MOUVEMENTS
+ * ==========
+ *
+ * Icône       : Scale 0→1.2→1 + Rotation -180°→0° + Alpha 0→1
+ * Titre       : TranslationX -500→0 + Alpha 0→1
+ * Sous-titre  : TranslationX 500→0 + Alpha 0→1
+ * Description : TranslationY 100→0 + Alpha 0→1
+ * Texte btn   : TranslationX -200→0 + Alpha 0→1
+ * Bouton FAB  : Scale 0→1 + TranslationY 200→0 + Alpha 0→1
+ *
+ * Animations continues :
+ * - Icône    : Rotation 0°→360° (infini)
+ * - Btn FAB  : Scale 1→1.1→1 (infini)
+ */
+
+/*
+ * NAVIGATION AUTOMATIQUE
+ * ======================
+ *
+ * Délai avant navigation : 3500ms (3.5 secondes)
+ *
+ * Pour modifier : Changez la valeur dans Handler(Looper.getMainLooper()).postDelayed({...}, 3500)
+ */
+
+/*
+ * COMMENT PERSONNALISER
+ * =====================
+ *
+ * 1. Pour changer la vitesse : Modifiez "duration"
+ *    Exemple : duration = 1000 (plus lent) ou duration = 400 (plus rapide)
+ *
+ * 2. Pour changer le délai : Modifiez "startDelay"
+ *    Exemple : startDelay = 500 (démarre plus tard)
+ *
+ * 3. Pour changer l'effet : Remplacez l'interpolator
+ *    - BounceInterpolator() : Rebond
+ *    - OvershootInterpolator() : Dépassement
+ *    - AccelerateInterpolator() : Accélération
+ *    - DecelerateInterpolator() : Décélération
+ *    - LinearInterpolator() : Vitesse constante
+ *
+ * 4. Pour désactiver une animation : Commentez son bloc .start()
+ *
+ * 5. Pour désactiver toutes les animations :
+ *    Commentez l'appel à startAnimations() dans onCreate()
+ */
+
+/*
+ * EXEMPLES DE MODIFICATIONS
+ * =========================
+ *
+ * Rendre l'icône plus rapide :
+ *   duration = 500 (au lieu de 800)
+ *
+ * Retarder le titre :
+ *   startDelay = 1000 (au lieu de 400)
+ *
+ * Rendre la pulsation plus rapide :
+ *   duration = 500 (au lieu de 1000)
+ *
+ * Augmenter l'amplitude de la pulsation :
+ *   ObjectAnimator.ofFloat(binding.arrowButton, "scaleX", 1f, 1.3f, 1f)
+ *   (au lieu de 1f, 1.1f, 1f)
+ */
+

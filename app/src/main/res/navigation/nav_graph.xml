@@ -5,84 +5,64 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/maisonListFragment">
 
-    <!-- Fragment Liste des Maisons -->
     <fragment
         android:id="@+id/maisonListFragment"
-        android:name="com.example.maisonhotes.ui.fragment.MaisonListFragment"
-        android:label="@string/maisons"
+        android:name="com.example.maisonhotesapp.ui.fragment.MaisonListFragment"
+        android:label="Maisons d'Hôtes"
         tools:layout="@layout/fragment_maison_list">
-
         <action
             android:id="@+id/action_maisonListFragment_to_maisonDetailFragment"
             app:destination="@id/maisonDetailFragment" />
-
         <action
             android:id="@+id/action_maisonListFragment_to_filtreFragment"
             app:destination="@id/filtreFragment" />
-    </fragment>
-
-    <!-- Fragment Détails Maison -->
-    <fragment
-        android:id="@+id/maisonDetailFragment"
-        android:name="com.example.maisonhotes.ui.fragment.MaisonDetailFragment"
-        android:label="@string/details"
-        tools:layout="@layout/fragment_maison_detail">
-
-        <argument
-            android:name="maisonId"
-            app:argType="integer" />
-
         <action
-            android:id="@+id/action_maisonDetailFragment_to_addEditMaisonFragment"
+            android:id="@+id/action_maisonListFragment_to_addEditMaisonFragment"
             app:destination="@id/addEditMaisonFragment" />
     </fragment>
 
-    <!-- Fragment Favoris -->
+    <fragment
+        android:id="@+id/maisonDetailFragment"
+        android:name="com.example.maisonhotesapp.ui.fragment.MaisonDetailFragment"
+        android:label="Détails"
+        tools:layout="@layout/fragment_maison_detail">
+        <argument
+            android:name="maisonId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+
     <fragment
         android:id="@+id/favoriFragment"
-        android:name="com.example.maisonhotes.ui.fragment.FavoriFragment"
-        android:label="@string/favoris"
+        android:name="com.example.maisonhotesapp.ui.fragment.FavoriFragment"
+        android:label="Favoris"
         tools:layout="@layout/fragment_maison_list">
-
         <action
             android:id="@+id/action_favoriFragment_to_maisonDetailFragment"
             app:destination="@id/maisonDetailFragment" />
     </fragment>
 
-    <!-- Fragment Filtres -->
     <fragment
         android:id="@+id/filtreFragment"
-        android:name="com.example.maisonhotes.ui.fragment.FiltreFragment"
-        android:label="@string/filtrer_resultats"
-        tools:layout="@layout/fragment_filtre">
+        android:name="com.example.maisonhotesapp.ui.fragment.FiltreFragment"
+        android:label="Filtres"
+        tools:layout="@layout/fragment_filtre" />
 
-        <action
-            android:id="@+id/action_filtreFragment_to_maisonListFragment"
-            app:destination="@id/maisonListFragment" />
-    </fragment>
-
-    <!-- Fragment Ajouter/Éditer Maison -->
     <fragment
         android:id="@+id/addEditMaisonFragment"
-        android:name="com.example.maisonhotes.ui.fragment.AddEditMaisonFragment"
-        android:label="@string/ajouter_maison"
+        android:name="com.example.maisonhotesapp.ui.fragment.AddEditMaisonFragment"
+        android:label="Ajouter/Modifier"
         tools:layout="@layout/fragment_add_edit_maison">
-
         <argument
             android:name="maisonId"
             app:argType="integer"
             android:defaultValue="0" />
-
-        <action
-            android:id="@+id/action_addEditMaisonFragment_to_maisonListFragment"
-            app:destination="@id/maisonListFragment" />
     </fragment>
 
-    <!-- Fragment Paramètres -->
     <fragment
         android:id="@+id/parametresFragment"
-        android:name="com.example.maisonhotes.ui.fragment.ParametresFragment"
-        android:label="@string/parametres"
+        android:name="com.example.maisonhotesapp.ui.fragment.ParametresFragment"
+        android:label="Paramètres"
         tools:layout="@layout/fragment_parametres" />
 
 </navigation>
